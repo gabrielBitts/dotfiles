@@ -3,19 +3,26 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(wombat))
  '(package-selected-packages
-   '(company dap-mode drag-stuff flycheck go-mode helm-lsp helm-xref
-			 lsp-ui lua-mode projectile termint treemacs-all-the-icons
-			 typescript-mode vterm-toggle yasnippet))
+   '(badwolf-theme company dap-mode drag-stuff flycheck go-mode helm-lsp
+				   helm-xref lsp-ui lua-mode projectile termint
+				   treemacs-all-the-icons typescript-mode vterm-toggle
+				   yasnippet))
  '(tab-width 4))
 
 ;; Custom visual configurations
+(load-theme 'badwolf t)
 (setq inhibit-startup-message t
 	  visible-bell t)
 (global-display-line-numbers-mode 1)
+(menu-bar-mode 0)
+(tool-bar-mode 0)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
+;; Tabline visuals
+(global-tab-line-mode 1)
+
+;; Adds pairs to (), []. {}, "", '', ``
 (electric-pair-mode 1)
 (setq electric-pair-pairs
       '(
@@ -33,11 +40,22 @@
   (drag-stuff-global-mode 1)
   (drag-stuff-define-keys))
 
-;Disable for a while
+; Custom Theming
+(set-frame-parameter nil 'alpha-background 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95))
+
+;Disable for a while until treemacs is completely implemented
 ;(use-package treemacs-all-the-icons :ensure t)
+;(use-package treemacs)
 
 ; Internal terminal
-(use-package vterm :ensure t)
+; The bind should be mapped depending on the used keyboard
+(use-package vterm
+  :ensure t
+  :config
+  (setq vterm-buffer-name "vterm")
+  )
+
 (use-package vterm-toggle
   :ensure t
   :bind (("C-`" . vterm-toggle)
@@ -66,7 +84,7 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
-;; LSP configs for C, Typescript, Python, Lua, C++ and Go
+; LSP configs for C, Typescript, Python, Lua, C++ and Go
 (use-package go-mode :ensure t)
 (use-package lua-mode
   :ensure t
@@ -85,15 +103,15 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook (
-		 (c-mode      . lsp-deferred)
-		 (cpp-mode    . lsp-deferred)
-		 (python-mode . lsp-deferred)
-		 (lua-mode    . lsp-deferred)
-		 (go-mode     . lsp-deferred)
-		 (typescript-mode . lsp-deferred)
-		 (tsx-mode    . lsp-deferred)
+		 (c-mode             . lsp-deferred)
+		 (cpp-mode           . lsp-deferred)
+		 (python-mode        . lsp-deferred)
+		 (lua-mode           . lsp-deferred)
+		 (go-mode            . lsp-deferred)
+		 (typescript-mode    . lsp-deferred)
+		 (tsx-mode           . lsp-deferred)
 		 (typescript-ts-mode . lsp-deferred)
-		 (lsp-mode    . lsp-enable-which-key-integration)
+		 (lsp-mode           . lsp-enable-which-key-integration)
 		 )
   :config
   (setq read-process-output-max (* 1024 1024))
