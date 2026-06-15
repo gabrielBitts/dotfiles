@@ -81,6 +81,23 @@
                 (reusable-frames . visible)
                 (window-height . 0.3)))
 
+<<<<<<< HEAD
+=======
+;; Git manager package
+(use-package magit :ensure t)
+
+; Install necessary packages for LSP
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile
+  (require 'use-package))
+(setq use-package-always-ensure t)
+
+>>>>>>> 0c0ede5 (+ Emacs tweaks)
 ; LSP configs for C, Typescript, Python, Lua, C++ and Go
 (use-package go-mode :ensure t)
 (use-package lua-mode
