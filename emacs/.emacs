@@ -1,14 +1,3 @@
-; Install necessary packages for LSP repo
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package))
-(setq use-package-always-ensure t)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -18,7 +7,6 @@
  '(tab-width 4))
 
 ;; Custom visual configurations
-(use-package badwolf-theme :ensure t)
 (load-theme 'badwolf t)
 (setq inhibit-startup-message t
 	  visible-bell t)
@@ -52,9 +40,15 @@
 (set-frame-parameter nil 'alpha-background 95)
 (add-to-list 'default-frame-alist '(alpha-background . 95))
 
+;; Select multiple
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C-d" . mc/mark-next-like-this)
+         ("C-c C-c" . mc/edit-lines)))
+
 ;Disable for a while until treemacs is completely implemented
-;(use-package treemacs-all-the-icons :ensure t)
 ;(use-package treemacs)
+;(use-package treemacs-all-the-icons:ensure t)
 
 ; Internal terminal
 ; The bind should be mapped depending on the used keyboard
@@ -81,8 +75,6 @@
                 (reusable-frames . visible)
                 (window-height . 0.3)))
 
-<<<<<<< HEAD
-=======
 ;; Git manager package
 (use-package magit :ensure t)
 
@@ -97,7 +89,6 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
->>>>>>> 0c0ede5 (+ Emacs tweaks)
 ; LSP configs for C, Typescript, Python, Lua, C++ and Go
 (use-package go-mode :ensure t)
 (use-package lua-mode
