@@ -3,7 +3,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(badwolf-theme company dap-mode dirvish drag-stuff flycheck go-mode
+				   helm-lsp helm-xref lsp-ui lua-mode magit
+				   multiple-cursors projectile termint
+				   treemacs-all-the-icons typescript-mode vterm-toggle
+				   yasnippet))
  '(tab-width 4))
 
 ;; Custom visual configurations
