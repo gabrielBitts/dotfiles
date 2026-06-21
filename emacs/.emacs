@@ -1,3 +1,6 @@
+;; Used for profiling startup time
+(setq use-package-compute-statistics t)
+
 ;; Install MELPA repository to fetch necessary packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -14,24 +17,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(badwolf-theme company dap-mode dirvish drag-stuff flycheck go-mode
-		   helm-lsp helm-xref lsp-ui lua-mode magit
-		   multiple-cursors projectile termint
-		   treemacs-all-the-icons typescript-mode vterm-toggle
-		   yasnippet))
- )
+ '(package-selected-packages nil))
 
 ;; Custom visual configurations
-(load-theme 'badwolf t)
+(use-package badwolf-theme
+  :config
+  (load-theme 'badwolf t))
 (setq inhibit-startup-message t
       visible-bell t)
 (global-display-line-numbers-mode 1)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-
-;; Tabline visuals
 (global-tab-line-mode 1)
 
 ;; Adds pairs to (), []. {}, "", '', ``
@@ -49,10 +46,9 @@
 
 ;; Drag stuff move words and lines aroud with M-(arrow key)
 (use-package drag-stuff
-  :ensure t
-  :config
-  (drag-stuff-global-mode 1)
-  (drag-stuff-define-keys))
+  :bind (("M-<up>" . drag-stuff-up)
+         ("M-<down>" . drag-stuff-down))
+  :defer t)
 
 ;; Custom Theming
 (set-frame-parameter nil 'alpha-background 95)
@@ -62,7 +58,8 @@
 (use-package multiple-cursors
   :ensure t
   :bind (("C-d" . mc/mark-next-like-this)
-         ("C-c C-c" . mc/edit-lines)))
+         ("C-c C-c" . mc/edit-lines))
+  :defer t)
 
 ;; Disable for a while until treemacs is completely implemented
 ;; (use-package treemacs)
@@ -76,6 +73,7 @@
   (setq vterm-buffer-name "vterm")
   )
 (use-package vterm-toggle
+  :after vterm
   :ensure t
   :bind (("C-`" . vterm-toggle)
 	 :map vterm-mode-map
@@ -93,12 +91,12 @@
                (window-height . 0.3)))
 
 ;; Git manager package
-(use-package magit :ensure t)
+(use-package magit
+  :bind ("C-x g" . magit-status))
 
 ;; LSP configs for C, Typescript, Python, Lua, C++ and Go
 (use-package lsp-mode
   :ensure t
-  :demand t
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook (
@@ -129,7 +127,9 @@
   (setq lsp-ui-sideline-enable t)
   )
 
-(use-package go-mode :ensure t)
+(use-package go-mode
+  :ensure t
+  :mode "\\.go\\'")
 (use-package lua-mode
   :ensure t
   :mode "\\.lua\\'")
