@@ -1,0 +1,3 @@
+cp -r emacs/.emacs ~/
+cp -r bash/.bashrc ~/
+cp -r kitty/kitty.conf ~/.config/kitty/
