@@ -1,5 +1,5 @@
 # Install necessary packages on my favourite distros
-packages="eza emacs kitty rust cargo python3 openssl-devel alsa-lib-devel libdbus-devel"
+packages="eza emacs kitty rust cargo python3 openssl-devel alsa-lib-devel dbus-devel"
 file="/etc/os-release"
 
 if [ -f "$file" ]
@@ -26,7 +26,8 @@ fi
 echo
 echo "============= Installing Spotify =============="
 echo     "Cloning and navigating to repo"
-git clone https://github.com/aome510/spotify-player && cd spotify_player
+git clone https://github.com/aome510/spotify-player
+cd spotify_player
 echo   "Installing spotify_player into the system"
 cargo install spotify_player --locked
 cd ..
@@ -47,7 +48,8 @@ echo
 echo
 echo "============= Installing Telegram ============="
 wget https://telegram.org/dl/desktop/linux
-sudo tar -xvf linux && cp -rf Telegram/ /opt/telegram/
+sudo tar -xvf linux
+sudo cp -rf Telegram/ /opt/telegram/
 echo "================== Done :) ===================="
 echo
 
