@@ -1,5 +1,5 @@
 # Install necessary packages on my favourite distros
-packages="eza emacs kitty"
+packages="eza emacs kitty rust cargo python3 openssl-devel alsa-lib-devel libdbus-devel"
 file="/etc/os-release"
 
 if [ -f "$file" ]
@@ -22,11 +22,15 @@ else
     echo "$file not found."
 fi
 
-echo "Copying files to the correct location..."
+echo "===== Copying files to the right place... ====="
 echo "emacs/.emacs ~/"
 echo "bash/.bashrc ~/"
 echo "kitty/kitty.conf ~/.config/kitty/"
+echo "wallpapers/* ~/Wallpapers"
 
+mkdir ~/Wallpapers
+cp -r wallpapers/* ~/Wallpapers
 cp -r emacs/.emacs ~/
 cp -r bash/.bashrc ~/
 cp -r kitty/kitty.conf ~/.config/kitty/
+

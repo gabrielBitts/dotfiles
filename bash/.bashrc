@@ -17,4 +17,10 @@ alias install='sudo dnf install -y'
 alias remove='sudo dnf uninstall'
 alias cv_heic=' for f in *.[hH][eE][iI][cC]; do heif-convert "$f" "${f%.*}.jpg"; done'
 alias spotify='/opt/spotify_player/spotify_player'
+
+# Don't forget to add the env vars dummass
 alias mount_server='sudo mount -t cifs //$SV_ADDRESS/Server /mnt/server_nattz   -o username=$SV_U,password=$SV_P,uid=$(id -u),gid=$(id -g),iocharset=utf8'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
