@@ -55,11 +55,11 @@
 (add-to-list 'default-frame-alist '(alpha-background . 95))
 
 ;; Select multiple
-(use-package multiple-cursors
-  :ensure t
-  :bind (("C-d" . mc/mark-next-like-this)
-         ("C-c C-c" . mc/edit-lines))
-  :defer t)
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C-.") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-,") 'mc/mark-all-like-this)
 
 ;; Disable for a while until treemacs is completely implemented
 ;; (use-package treemacs)
