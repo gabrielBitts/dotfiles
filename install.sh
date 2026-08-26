@@ -1,5 +1,5 @@
 # Install necessary packages on my favourite distros
-packages="eza emacs kitty rust cargo python3 openssl-devel alsa-lib-devel dbus-devel"
+packages="eza emacs kitty rust cargo python3 openssl-devel alsa-lib-devel dbus-devel adwaita-fonts-all.noarch adwaita-mono-fonts.noarch"
 file="/etc/os-release"
 
 if [ -f "$file" ]
@@ -30,16 +30,17 @@ wget https://github.com/aome510/spotify-player/releases/latest/download/spotify_
 sudo tar -xvf spotify_player-x86_64-unknown-linux-gnu.tar.gz
 sudo mkdir /opt/spotify_player
 sudo cp -rf spotify_player /opt/spotify_player
+sudo chmod +x /opt/spotify_player
 rm -rf spotify_player-x86_64-unknown-linux-gnu.tar.gz spotify_player
 echo "================== Done :) ===================="
 echo
 
 # Install waterfox
 echo
-echo "============= Installing Waterfox ============="
+echo "============ Installing Librewolf ============="
 sudo dnf config-manager addrepo \
-  --from-repofile=https://download.opensuse.org/repositories/isv:/BrowserWorks/Fedora_44/isv:BrowserWorks.repo
-sudo dnf install waterfox
+     --from-repofile=https://repo.librewolf.net/librewolf.repo
+sudo dnf install librewolf
 echo "================== Done :) ===================="
 echo
 
@@ -52,4 +53,3 @@ sudo cp -rf Telegram/* /opt/telegram/
 rm -rf Telegram linux
 echo "================== Done :) ===================="
 echo
-

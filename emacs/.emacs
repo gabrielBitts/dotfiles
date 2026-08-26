@@ -1,6 +1,10 @@
 ;; Used for profiling startup time
 (setq use-package-compute-statistics t)
 
+;; Add used font
+(add-to-list 'default-frame-alist
+             '(font . "Adwaita Mono-12"))
+
 ;; Install MELPA repository to fetch necessary packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)

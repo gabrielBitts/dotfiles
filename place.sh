@@ -10,3 +10,11 @@ cp -r emacs/.emacs ~/
 cp -r bash/.bashrc ~/
 cp -r kitty/kitty.conf ~/.config/kitty/
 
+echo "=========== Extracting KDE configs ============"
+python3 -m venv konsave
+source konsave/bin/activate
+pip install konsave
+konsave -i kde/KDE.knsv
+deactivate
+sudo rm -rf konsave
+echo "=================== Done ======================"
