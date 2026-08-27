@@ -13,12 +13,13 @@ echo "emacs/.emacs ~/"
 echo "bash/.bashrc ~/"
 echo "kitty/kitty.conf ~/.config/kitty/"
 echo "wallpapers/* ~/Wallpapers"
-echo "librewolf/* ~/.config/librewolf/librewolf/"
+echo "librewolf/* ~/.librewolf/"
 
 mkdir -p ~/Wallpapers
+mkdir -p ~/.librewolf/
 cp -r wallpapers/* ~/Wallpapers
 cp -r emacs/.emacs ~/
 cp -r bash/.bashrc ~/
 cp -r kitty/kitty.conf ~/.config/kitty/
-cp -r librewolf/* ~/.config/librewolf/librewolf/
+cp -r librewolf/* ~/.librewolf/
 echo "=================== Done ======================"
