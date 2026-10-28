@@ -42,29 +42,6 @@ chmod +x ~/.local/share/applications/spotatui.desktop
 echo "================== Done :) ===================="
 echo
 
-# Install ZapFast!
-echo
-echo "============= Installing ZapFast =============="
-echo     "Cloning and navigating to repo"
-wget https://github.com/crmne/zapfast/releases/latest/download/zapfast-v0.14.0-x86_64-unknown-linux-gnu.tar.gz
-sudo tar -xvf zapfast-v0.14.0-x86_64-unknown-linux-gnu.tar.gz
-sudo mkdir -p /opt/zapfast
-sudo cp -rf zapfast-v0.14.0-x86_64-unknown-linux-gnu/zapfast /opt/zapfast/
-sudo chmod +x /opt/zapfast
-sudo rm -rf zapfast-*
-echo     "Creating ZapFast desktop link"
-cat <<EOF > ~/.local/share/applications/zapfast.desktop
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=ZapFast
-Exec=/opt/zapfast/zapfast
-Terminal=false
-EOF
-chmod +x ~/.local/share/applications/zapfast.desktop
-echo "================== Done :) ===================="
-echo
-
 # Install Librewolf
 echo
 echo "============ Installing Librewolf ============="
